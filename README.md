@@ -1,35 +1,197 @@
-# Tape-Taupe
+# ⚡ Embedded Whac-A-Mole (Tape-Taupe)
 
-Projet Tape-Taupe en Arduino
+<div align="center">
 
-Ce projet vise à créer un jeu de tape-taupe en utilisant une carte Arduino. Les joueurs doivent frapper les boutons correspondant aux taupes qui sortent aléatoirement de leur terrier pour marquer des points. Cependant, certaines taupes peuvent être piégées, ce qui fera perdre des points au joueur s'il les frappe. De plus, des taupes bonus peuvent apparaître, permettant de gagner des points supplémentaires.
-Fonctionnalités
+[![Language](https://img.shields.io/badge/Language-C%2B%2B%20%2F%20Arduino-00599C)]()
+[![Hardware](https://img.shields.io/badge/Hardware-Arduino_Mega-red)]()
+[![Electronics](https://img.shields.io/badge/Electronics-Circuit_Design-yellow)]()
 
-    Affichage des points sur un écran LCD.
-    Son émis par un buzzer lorsqu'une taupe est frappée.
-    Randomisation des taupes piégées et des taupes bonus.
-    Système de points de vie pour augmenter la difficulté.
-    Les taupes peuvent entrer et sortir des boîtes.
+<br/>
 
-Matériel Requis
+[🇺🇸 English Version](#-english-version) | [🇫🇷 Version Française](#-version-française)
 
-    Carte Arduino (Arduino Uno ou Arduino Mega)
-    Écran LCD
-    Boutons poussoirs
-    LEDs
-    Buzzer
-    Fils de connexion
-    Boîtier pour contenir les composants
+</div>
 
-Installation et Utilisation
+---
 
-    Connecter tous les composants à la carte Arduino selon le schéma de branchement fourni.
-    Charger le code source sur la carte Arduino à l'aide du logiciel Arduino IDE.
-    Monter les composants dans le boîtier en veillant à ce que les boutons soient facilement accessibles.
-    Mettre sous tension la carte Arduino et commencer à jouer en tapant sur les boutons pour frapper les taupes qui sortent de leur terrier.
+# 🇺🇸 English Version
 
-Auteurs
+## 📝 Overview
 
-Ce projet a été réalisé par Bahri Othmane et Dufraigne Titouan dans le cadre de notre année de PeiP1 du cycle ingénieur de Polytech Nice Sophia.
+A custom-built electronic version of the famous **Whac-A-Mole** game.
 
-Nous tenons à remercier Polytech ainsi que Mr.Masson pour son soutien et ses précieux conseils tout au long du développement de ce projet. Nous remercions également la communauté Arduino pour ses ressources et son partage de connaissances.
+This project was fully designed and developed in **C++ using Arduino microcontrollers**, combining embedded programming and electronic circuit design.
+
+The system features:
+
+- 🎮 Real-time interaction  
+- 📟 Live LCD display (score & timer)  
+- 🔊 Audio feedback via buzzer  
+- 📈 Progressive difficulty with special "trap" events  
+
+**Context:** Engineering Project (L1/L2 Level)  
+**Role:** Co-creator (Hardware & Software) with Titouan D.
+
+---
+
+## ⚙️ Technical Specifications
+
+### 🧠 Microcontroller
+- **Arduino Mega 2560**
+
+### 🎛️ Inputs
+- 6 × Arcade Push Buttons  
+- Wired using **Pull-down resistors**
+
+### 💡 Outputs
+- 6 × LEDs (visual signals)
+- **I2C LCD Screen** (score & timer display)
+- **Active Buzzer** (audio feedback)
+
+### 🧮 Game Logic
+- Randomized mole generation
+- Non-blocking timing system
+- “Trap” events (penalty if wrong button is pressed)
+- Progressive difficulty scaling
+
+---
+
+## 📸 Prototype & Gallery
+
+| Circuit Logic | Final Build |
+| :---: | :---: |
+| ![Circuit](img/cablage.png) | ![Boitier](img/BoiteFinale.png) |
+| *Electronic wiring and logic components* | *Fully assembled functional casing* |
+
+---
+
+## 💻 Software Architecture
+
+The program is built around:
+
+- **Non-blocking timing using `millis()`**
+- Arrays to efficiently manage the 6 inputs
+- Event-driven logic
+- Real-time responsiveness without freezing the processor
+
+### 🔎 Example: Non-blocking input listener
+
+```cpp
+// Example: Non-blocking input listener
+bool waitForInput(int btnIndex, int timeout) {
+  unsigned long startTime = millis();
+
+  while (millis() - startTime < timeout) {
+    if (digitalRead(PIN_BOUTONS[btnIndex]) == HIGH) {
+      return true; // Button pressed
+    }
+  }
+
+  return false; // Timeout reached
+}
+```
+
+This approach ensures:
+
+- ✅ The microcontroller remains responsive  
+- ✅ Multiple events can be handled efficiently  
+- ✅ No blocking delays (`delay()`) are used  
+
+---
+
+# 🇫🇷 Version Française
+
+## 📝 Présentation
+
+Une version électronique personnalisée du célèbre jeu **Tape-Taupe (Whac-A-Mole)**.
+
+Ce projet a été entièrement conçu et développé en **C++ sur microcontrôleur Arduino**, en combinant programmation embarquée et conception électronique.
+
+Le système propose :
+
+- 🎮 Une interaction en temps réel  
+- 📟 Un affichage dynamique sur écran LCD (score & chronomètre)  
+- 🔊 Un retour sonore via buzzer  
+- 📈 Une difficulté progressive avec événements "piège"  
+
+**Contexte :** Projet d’ingénierie (niveau L1/L2)  
+**Rôle :** Co-créateur (Matériel & Logiciel) avec Titouan D.
+
+---
+
+## ⚙️ Spécifications Techniques
+
+### 🧠 Microcontrôleur
+- **Arduino Mega 2560**
+
+### 🎛️ Entrées
+- 6 × Boutons d’arcade  
+- Câblage avec résistances **Pull-down**
+
+### 💡 Sorties
+- 6 × LEDs (signaux visuels)
+- **Écran LCD I2C** (affichage score & chronomètre)
+- **Buzzer actif** (retour sonore)
+
+### 🧮 Logique du jeu
+- Génération aléatoire des cibles
+- Gestion du temps en non-bloquant
+- Événements “piège” (pénalité si mauvais bouton pressé)
+- Augmentation progressive de la difficulté
+
+---
+
+## 💻 Architecture Logicielle
+
+Le programme repose sur :
+
+- L’utilisation de **`millis()`** pour éviter les délais bloquants  
+- Des **tableaux de pins** pour gérer efficacement les 6 entrées  
+- Une logique événementielle  
+- Une gestion temps réel optimisée
+
+### 🔎 Exemple : écoute non-bloquante d’un bouton
+
+```cpp
+// Exemple : écoute non-bloquante d’un bouton
+bool waitForInput(int btnIndex, int timeout) {
+  unsigned long startTime = millis();
+
+  while (millis() - startTime < timeout) {
+    if (digitalRead(PIN_BOUTONS[btnIndex]) == HIGH) {
+      return true; // Bouton pressé
+    }
+  }
+
+  return false; // Temps écoulé
+}
+```
+
+Cette approche permet :
+
+- ✅ De ne pas bloquer le microcontrôleur  
+- ✅ De gérer plusieurs événements simultanément  
+- ✅ D’assurer une réactivité constante  
+
+---
+
+## 🚀 Skills Demonstrated / Compétences mises en œuvre
+
+- Embedded Programming (C++ / Arduino)
+- Real-Time System Design
+- Electronic Circuit Design
+- Hardware/Software Integration
+- Debugging (Hardware & Firmware)
+- Functional Prototyping
+
+---
+
+## 🏁 Conclusion
+
+This project demonstrates a complete embedded system workflow —  
+from circuit design to firmware development and final product integration.
+
+Ce projet illustre une approche complète d’un système embarqué,  
+de la conception électronique jusqu’à l’intégration logicielle finale.
+
+---
