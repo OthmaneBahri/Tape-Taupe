@@ -58,9 +58,9 @@ The system features:
 
 ## 📸 Prototype & Gallery
 
-| Circuit Logic | Final Build |
-| :---: | :---: |
-| ![Circuit](tt/cablage.png) | ![Boitier](tt/BoiteFinale.png) | ![Code Scheme](tt/Organigram.png) |
+| Circuit Logic | Final Build | Code Scheme |
+| :---: | :---: | :--: |
+| ![Circuit](tt/cablage.png) | ![Boitier](tt/BoiteFinale.png) | ![Scheme](tt/Organigram.png) |
 | *Electronic wiring and logic components* | *Fully assembled functional casing* | *Organigram* |
 
 ---
