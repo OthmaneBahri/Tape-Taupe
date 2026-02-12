@@ -29,7 +29,7 @@ The system features:
 - 🔊 Audio feedback via buzzer  
 - 📈 Progressive difficulty with special "trap" events  
 
-**Context:** Engineering Project (L1/L2 Level)  
+**Context:** Engineering Project (L2 Level)  
 **Role:** Co-creator (Hardware & Software) with Titouan D.
 
 ---
@@ -60,7 +60,7 @@ The system features:
 
 | Circuit Logic | Final Build |
 | :---: | :---: |
-| ![Circuit](img/cablage.png) | ![Boitier](img/BoiteFinale.png) |
+| ![Circuit](cablage.png) | ![Boitier](BoiteFinale.png) |
 | *Electronic wiring and logic components* | *Fully assembled functional casing* |
 
 ---
@@ -114,7 +114,7 @@ Le système propose :
 - 🔊 Un retour sonore via buzzer  
 - 📈 Une difficulté progressive avec événements "piège"  
 
-**Contexte :** Projet d’ingénierie (niveau L1/L2)  
+**Contexte :** Projet d’ingénierie (niveau L2)  
 **Rôle :** Co-créateur (Matériel & Logiciel) avec Titouan D.
 
 ---
